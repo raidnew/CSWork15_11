@@ -8,12 +8,17 @@ using System.Threading.Tasks;
 
 namespace Task1
 {
-    public class Program
+    public partial class Program
     {
         private int _countThread = 10;
         private Thread[] _threads;
 
-        static private void MessageOutput(object data)
+        static void Main(string[] args)
+        {
+            new Program();
+        }
+
+        private void MessageOutput(object data)
         {
             ThreadData threadData = (ThreadData)data;
             Console.WriteLine($"Start thread \"{threadData.name}\" repeats:{threadData.countRepeat} delay:{threadData.delayInterval}");
@@ -25,11 +30,6 @@ namespace Task1
             }
 
             Console.WriteLine($"Finish {threadData.name}");
-        }
-
-        static void Main(string[] args)
-        {
-            new Program();
         }
 
         private Program()
@@ -44,20 +44,6 @@ namespace Task1
             }
 
             Console.ReadKey();
-        }
-
-        private struct ThreadData
-        {
-            public string name;
-            public int delayInterval;
-            public int countRepeat;
-
-            public ThreadData(string name, int countRepeat, int delayInterval)
-            {
-                this.name = name;
-                this.delayInterval = delayInterval;
-                this.countRepeat = countRepeat;
-            }
         }
 
     }
